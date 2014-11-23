@@ -44,6 +44,10 @@ sub weave_section {
     # put here to avoid confusing Pod::Weaver
     my $h2 = '=head2';
 
+    my $func_name = $command_name;
+    $func_name =~ s/[^A-Za-z0-9]+/_/g;
+    $func_name = "_$func_name";
+
     my $text = <<_;
 This script has shell tab completion capability with support for several shells.
 
@@ -71,6 +75,18 @@ To activate tcsh completion for this script, put:
  complete $command_name 'p/*/`$command_name`/'
 
 in your tcsh startup (e.g. C<~/.tcshrc>). Your next shell session will then
+recognize tab completion for the command. Or, you can also directly execute the
+line above in your shell to activate immediately.
+
+$h2 zsh
+
+To activate zsh completion for this script, put:
+
+ $func_name() { read -l; local cl="\$REPLY"; read -ln; local cp="\$REPLY"; reply=(`COMP_LINE="\$cl" COMP_POINT="\$cp" $command_name`) }
+
+ compctl -K $func_name $command_name
+
+in your zsh startup (e.g. C<~/.zshrc>). Your next shell session will then
 recognize tab completion for the command. Or, you can also directly execute the
 line above in your shell to activate immediately.
 
