@@ -1,5 +1,11 @@
 Revision history for Pod-Weaver-Section-Completion-GetoptLongComplete
 
+0.02    2014-11-23 (PERLANCAR)
+
+        - Rename dist Pod-Weaver-Section-{Bash,Completion}-GetoptLongComplete
+          because now shell other than bash is also supported.
+
+
 0.01    2014-11-12 (PERLANCAR)
 
         - First release.
