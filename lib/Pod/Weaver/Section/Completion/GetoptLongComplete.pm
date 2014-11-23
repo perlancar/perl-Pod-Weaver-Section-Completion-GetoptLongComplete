@@ -1,4 +1,4 @@
-package Pod::Weaver::Section::BashCompletion::GetoptLongComplete;
+package Pod::Weaver::Section::Completion::GetoptLongComplete;
 
 # DATE
 # VERSION
@@ -41,8 +41,13 @@ sub weave_section {
         return;
     }
 
+    # put here to avoid confusing Pod::Weaver
+    my $h2 = '=head2';
+
     my $text = <<_;
-This script has bash completion capability.
+This script has shell tab completion capability with support for several shells.
+
+$h2 bash
 
 To activate bash completion for this script, put:
 
@@ -59,12 +64,22 @@ can just run C<bash-completion-prog> and the C<complete> command will be added
 to your C<~/.bash-completion-prog>. Your next shell session will then recognize
 tab completion for the command.
 
+$h2 tcsh
+
+To activate tcsh completion for this script, put:
+
+ complete $command_name 'p/*/`$command_name`/'
+
+in your tcsh startup (e.g. C<~/.tcshrc>). Your next shell session will then
+recognize tab completion for the command. Or, you can also directly execute the
+line above in your shell to activate immediately.
+
 _
 
     $document->children->push(
         Pod::Elemental::Element::Nested->new({
             command  => 'head1',
-            content  => 'BASH COMPLETION',
+            content  => 'COMPLETION',
             children => [
                 map { s/\n/ /g; Pod::Elemental::Element::Pod5::Ordinary->new({ content => $_ })} split /\n\n/, $text
             ],
@@ -74,7 +89,7 @@ _
 
 no Moose;
 1;
-# ABSTRACT: Add a BASH COMPLETION section for Getopt::Long::Complete-based scripts
+# ABSTRACT: Add a COMPLETION section for Getopt::Long::Complete-based scripts
 
 =for Pod::Coverage weave_section
 
@@ -82,14 +97,14 @@ no Moose;
 
 In your C<weaver.ini>:
 
- [BashCompletion::GetoptLongComplete]
+ [Completion::GetoptLongComplete]
 
 
 =head1 DESCRIPTION
 
-This section plugin adds a BASH COMPLETION section for
-Getopt::Long::Complete-based scripts. The section contains information on how to
-activate bash completion for the scripts.
+This section plugin adds a COMPLETION section for Getopt::Long::Complete-based
+scripts. The section contains information on how to activate shell tab
+completion for the scripts.
 
 
 =head1 SEE ALSO
