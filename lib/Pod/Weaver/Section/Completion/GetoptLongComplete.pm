@@ -68,6 +68,17 @@ can just run C<bash-completion-prog> and the C<complete> command will be added
 to your C<~/.bash-completion-prog>. Your next shell session will then recognize
 tab completion for the command.
 
+$h2 fish
+
+To activate fish completion for this script, execute:
+
+ begin; set -lx COMP_SHELL fish; set -lx COMP_MODE gen_command; $command_name; end > \$HOME/.config/fish/completions/$command_name.fish
+
+Or if you want to install globally, you can instead write the generated script
+to C</etc/fish/completions/$command_name.fish> or
+C</usr/share/fish/completions/$command_name.fish>. The exact path might be
+different on your system. Please check your C<fish_complete_path> variable.
+
 $h2 tcsh
 
 To activate tcsh completion for this script, put:
@@ -82,7 +93,7 @@ $h2 zsh
 
 To activate zsh completion for this script, put:
 
- $func_name() { read -l; local cl="\$REPLY"; read -ln; local cp="\$REPLY"; reply=(`COMP_LINE="\$cl" COMP_POINT="\$cp" $command_name`) }
+ $func_name() { read -l; local cl="\$REPLY"; read -ln; local cp="\$REPLY"; reply=(`COMP_SHELL=zsh COMP_LINE="\$cl" COMP_POINT="\$cp" $command_name`) }
 
  compctl -K $func_name $command_name
 
