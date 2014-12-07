@@ -1,5 +1,13 @@
 Revision history for Pod-Weaver-Section-Completion-GetoptLongComplete
 
+0.05    2014-12-07 (PERLANCAR)
+
+	- No functional changes.
+
+	- Refactor: Move section text (common with pws-comp-pericmd) to
+	  Pod::Weaver::Role::SectionText::SelfCompletion.
+
+
 0.04    2014-11-29 (PERLANCAR)
 
 	- Add instruction for fish and tweak zsh instruction.
