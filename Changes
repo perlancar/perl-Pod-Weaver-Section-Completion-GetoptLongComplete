@@ -1,5 +1,12 @@
 Revision history for Pod-Weaver-Section-Completion-GetoptLongComplete
 
+0.06    2015-01-13 (PERLANCAR)
+
+	- No functional changes.
+
+	- [Refactor] Use PWR::AddTextToSection.
+
+
 0.05    2014-12-07 (PERLANCAR)
 
 	- No functional changes.
