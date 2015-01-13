@@ -5,6 +5,7 @@ package Pod::Weaver::Section::Completion::GetoptLongComplete;
 
 use 5.010001;
 use Moose;
+with 'Pod::Weaver::Role::AddTextToSection';
 with 'Pod::Weaver::Role::Section';
 with 'Pod::Weaver::Role::SectionText::SelfCompletion';
 
@@ -42,17 +43,7 @@ sub weave_section {
         return;
     }
 
-    my $text = $self->section_text({command_name=>$command_name});
-
-    $document->children->push(
-        Pod::Elemental::Element::Nested->new({
-            command  => 'head1',
-            content  => 'COMPLETION',
-            children => [
-                map { s/\n/ /g; Pod::Elemental::Element::Pod5::Ordinary->new({ content => $_ })} split /\n\n/, $text
-            ],
-        }),
-    );
+    $self->add_text_to_section($document, $text, 'COMPLETION');
 }
 
 no Moose;
