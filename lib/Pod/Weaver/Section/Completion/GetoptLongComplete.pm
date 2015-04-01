@@ -10,7 +10,6 @@ with 'Pod::Weaver::Role::Section';
 with 'Pod::Weaver::Role::SectionText::SelfCompletion';
 
 use List::Util qw(first);
-use Moose::Autobox;
 
 sub weave_section {
     my ($self, $document, $input) = @_;
