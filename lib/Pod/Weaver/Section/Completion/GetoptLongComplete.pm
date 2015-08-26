@@ -42,7 +42,7 @@ sub weave_section {
         return;
     }
 
-    my $text = $self->section_text({command_name=>$command_name});
+    my $text = $self->section_text_self_completion({command_name=>$command_name});
 
     $self->add_text_to_section($document, $text, 'COMPLETION');
 }
