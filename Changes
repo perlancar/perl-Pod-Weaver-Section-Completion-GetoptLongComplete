@@ -1,5 +1,12 @@
 Revision history for Pod-Weaver-Section-Completion-GetoptLongComplete
 
+0.07    2015-08-26 (PERLANCAR)
+
+	- Adjust to PWR:SectionText::SelfCompletion 0.04.
+
+	- Remove Moose::Autobox.
+
+
 0.06    2015-01-13 (PERLANCAR)
 
 	- No functional changes.
