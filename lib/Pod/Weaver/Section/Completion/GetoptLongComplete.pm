@@ -24,6 +24,13 @@ sub weave_section {
         return;
     }
 
+    # file looks like a completer script, don't bother generating completer for
+    # completer :)
+    if ($command_name =~ /\A_/) {
+        $self->log_debug(["skipped script %s (a completer itself)", $filename]);
+        return;
+    }
+
     # find file content in zilla object, not directly in filesystem, because the
     # file might be generated dynamically by dzil.
     my $file = first { $_->name eq $filename } @{ $input->{zilla}->files };
